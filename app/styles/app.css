@@ -1,0 +1,61 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/***
+*
+* Menu button
+*
+***/
+.menu-toggle input {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 14px;
+  z-index: 20;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: black;
+
+  transform-origin: 4px 0px;
+  transition: transform 0.3s cubic-bezier(0.77, 0.2, 0.05, 1),
+    opacity 0.55s ease;
+}
+
+.menu-toggle span:first-of-type {
+  transform-origin: 0% 0%;
+}
+
+.menu-toggle span:nth-last-of-type(1) {
+  transform-origin: 0% 100%;
+}
+
+.menu-toggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-1px, -1px);
+  background: #232323;
+}
+
+.menu-toggle input:checked ~ span:nth-last-of-type(2) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+.menu-toggle input:checked ~ span:nth-last-of-type(1) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+.menu-mobile {
+  transition: transform 0.3s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+.menu-toggle input:checked ~ .menu-mobile {
+  transform: none;
+}

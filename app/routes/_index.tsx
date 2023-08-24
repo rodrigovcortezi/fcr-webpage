@@ -5,7 +5,7 @@ const IndexRoute = () => {
   return (
     <>
       <NavigationMenu />
-      <main className="w-full h-screen lg:pl-[350px] flex justify-center items-center">
+      <main className="w-full min-h-screen lg:pl-[350px] flex justify-center items-start py-24 sm:items-center">
         <HeroSection />
       </main>
     </>

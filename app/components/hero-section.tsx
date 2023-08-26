@@ -22,7 +22,7 @@ const HeroSection = () => {
   return (
     <div className="flex flex-col md:flex-row items-center">
       <div className="mb-8 md:mb-0 h-[200px] w-[200px] sm:h-[250px] sm:w-[250px]">
-        <img className="rounded-full" src="/profile.png" alt="Profile" />
+        <img className="rounded-full" src="/profile-400.webp" alt="Profile" />
       </div>
       <div className="md:ml-20">
         <h3 className="text-center md:text-start font-extrabold text-black text-3xl sm:text-5xl mb-3 sm:mb-4">

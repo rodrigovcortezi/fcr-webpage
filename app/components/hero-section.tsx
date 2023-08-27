@@ -7,12 +7,19 @@ import {
 
 type SocialLinkProps = {
   href: string
+  label: string
   children: React.ReactNode
 }
 
-const SociaLink = ({href, children}: SocialLinkProps) => {
+const SociaLink = ({href, label, children}: SocialLinkProps) => {
   return (
-    <a className="block p-1" href={href} rel="noreferrer" target="_blank">
+    <a
+      className="block p-1"
+      aria-label={label}
+      href={href}
+      rel="noreferrer"
+      target="_blank"
+    >
       {children}
     </a>
   )
@@ -34,22 +41,28 @@ const HeroSection = () => {
         <div className="text-center md:text-start mb-[-0.25rem] ml-[-0.25rem]">
           <ul className="leading-[0] space-x-2">
             <li className="inline-block">
-              <SociaLink href="https://linkedin.com/in/fcrcortezi">
+              <SociaLink
+                label="linkedin"
+                href="https://linkedin.com/in/fcrcortezi"
+              >
                 <LinkedinIcon size={20} />
               </SociaLink>
             </li>
             <li className="inline-block">
-              <SociaLink href="https://twitter.com/FCRCortezi">
+              <SociaLink label="twitter" href="https://twitter.com/FCRCortezi">
                 <TwitterIcon size={20} />
               </SociaLink>
             </li>
             <li className="inline-block">
-              <SociaLink href="https://fb.me/fcrcortezi">
+              <SociaLink label="facebook" href="https://fb.me/fcrcortezi">
                 <FacebookIcon size={20} />
               </SociaLink>
             </li>
             <li className="inline-block">
-              <SociaLink href="https://www.instagram.com/fcrcortezi/">
+              <SociaLink
+                label="instagram"
+                href="https://www.instagram.com/fcrcortezi/"
+              >
                 <InstagramIcon size={20} />
               </SociaLink>
             </li>

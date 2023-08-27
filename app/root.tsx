@@ -16,6 +16,27 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export const links: LinksFunction = () => [
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Montserrat/Montserrat-Regular.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Montserrat/Montserrat-Medium.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Montserrat/Montserrat-ExtraBold.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
   {rel: 'stylesheet', href: tailwindStyles},
   {rel: 'stylesheet', href: appStyles},
 ]

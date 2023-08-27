@@ -1,4 +1,5 @@
 import {Link} from '@remix-run/react'
+import React from 'react'
 
 type MenuLinkProps = {
   className?: string
@@ -60,7 +61,7 @@ const NavigationMenu = () => {
           <span className="relative z-10"></span>
           <span className="relative z-10 mt-2"></span>
           <span className="relative z-10 mt-2"></span>
-          <div className="menu-mobile fixed right-0 top-0 w-[200px] h-screen bg-white translate-x-full">
+          <div className="menu-mobile fixed right-[-200px] top-0 w-[200px] h-screen bg-white">
             <div className="pt-36 px-5 text-right">
               <Menu />
             </div>

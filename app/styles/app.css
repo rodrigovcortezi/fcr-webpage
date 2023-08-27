@@ -57,5 +57,5 @@
 }
 
 .menu-toggle input:checked ~ .menu-mobile {
-  transform: none;
+  transform: translate(-100%, 0);
 }

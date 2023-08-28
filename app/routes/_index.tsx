@@ -11,6 +11,7 @@ import {NavigationMenu} from '~/components/navigation-menu'
 export const loader = async () => {
   const {data} = await getStoryblokApi().get(`cdn/stories/home`, {
     version: 'published',
+    cv: +new Date(),
   })
 
   return json(data?.story)

@@ -1,4 +1,4 @@
-import type {LinksFunction, V2_MetaFunction} from '@remix-run/node'
+import {json, type LinksFunction, type V2_MetaFunction} from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -6,10 +6,32 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from '@remix-run/react'
 
 import tailwindStyles from '~/styles/tailwind.css'
 import appStyles from '~/styles/app.css'
+
+import {storyblokInit, apiPlugin} from '@storyblok/react'
+
+storyblokInit({
+  accessToken:
+    typeof window !== 'undefined'
+      ? (window as any).ENV.STORYBLOK_TOKEN
+      : process.env.STORYBLOK_TOKEN,
+  use: [apiPlugin],
+  apiOptions: {
+    region: 'us',
+  },
+})
+
+export const loader = async () => {
+  return json({
+    ENV: {
+      STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
+    },
+  })
+}
 
 export const meta: V2_MetaFunction = () => {
   return [{title: 'Fernando Cortezi'}]
@@ -42,6 +64,7 @@ export const links: LinksFunction = () => [
 ]
 
 export default function App() {
+  const data = useLoaderData<typeof loader>()
   return (
     <html lang="en">
       <head>
@@ -52,6 +75,11 @@ export default function App() {
       </head>
       <body className="bg-gray-100 text-gray-500 text-base">
         <Outlet />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
+          }}
+        />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

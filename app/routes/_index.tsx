@@ -1,4 +1,5 @@
 import {json} from '@remix-run/node'
+import type {LoaderArgs} from '@remix-run/node'
 import {useLoaderData} from '@remix-run/react'
 import {
   getStoryblokApi,
@@ -8,9 +9,13 @@ import {
 import {HeroSection} from '~/components/hero-section'
 import {NavigationMenu} from '~/components/navigation-menu'
 
-export const loader = async () => {
+export const loader = async ({request}: LoaderArgs) => {
+  const url = new URL(request.url)
+  const queryParams = new URLSearchParams(url.search)
+  const preview = !!queryParams.get('_storyblok')
+
   const {data} = await getStoryblokApi().get(`cdn/stories/home`, {
-    version: 'published',
+    version: preview ? 'draft' : 'published',
     cv: +new Date(),
   })
 

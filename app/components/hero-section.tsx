@@ -5,6 +5,7 @@ import {
   LinkedinIcon,
   TwitterIcon,
 } from '~/components/icons'
+import {imageResolver, imageSrcSet} from '~/helpers/image'
 
 type SocialLinkProps = {
   href: string
@@ -27,6 +28,7 @@ const SociaLink = ({href, label, children}: SocialLinkProps) => {
 }
 
 const HeroSection = ({blok}: {blok: any}) => {
+  const {profile} = blok
   return (
     <div
       {...storyblokEditable(blok)}
@@ -35,7 +37,9 @@ const HeroSection = ({blok}: {blok: any}) => {
       <div className="mb-8 md:mb-0">
         <img
           className="h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] object-cover object-center rounded-full"
-          src={blok.profile.filename}
+          src={imageResolver(profile.filename)}
+          srcSet={imageSrcSet(profile.filename, [200, 250, 400, 500, 600])}
+          sizes="(max-width: 768px) 200px, 250px"
           alt="Profile"
         />
       </div>

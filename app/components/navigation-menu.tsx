@@ -1,19 +1,19 @@
-import {Link} from '@remix-run/react'
+import {Link, useLocation} from '@remix-run/react'
 import React from 'react'
 
 type MenuLinkProps = {
-  className?: string
   to: string
   children: React.ReactNode
 }
 
-const MenuLink = ({className = '', to, children}: MenuLinkProps) => {
-  const joinedClassNames = [
-    'inline-block py-0.5 font-medium hover:text-black',
-    className,
-  ].join(' ')
+const MenuLink = ({to, children}: MenuLinkProps) => {
+  const location = useLocation()
+  const activeClass = location.pathname === to ? 'text-black' : ''
   return (
-    <Link className={joinedClassNames} to={to}>
+    <Link
+      className={`${activeClass} inline-block py-0.5 font-medium hover:text-black`}
+      to={to}
+    >
       {children}
     </Link>
   )
@@ -23,12 +23,10 @@ const Menu = () => {
   return (
     <ul className="mt-[-0.25px]">
       <li>
-        <MenuLink className="text-black" to=".">
-          Home
-        </MenuLink>
+        <MenuLink to="/">Home</MenuLink>
       </li>
       <li>
-        <MenuLink to=".">Sobre</MenuLink>
+        <MenuLink to="/about">Sobre</MenuLink>
       </li>
       <li>
         <MenuLink to=".">Consultoria</MenuLink>

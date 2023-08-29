@@ -9,13 +9,9 @@ import {
 import {HeroSection} from '~/components/hero-section'
 import {NavigationMenu} from '~/components/navigation-menu'
 
-export const loader = async ({request}: LoaderArgs) => {
-  const url = new URL(request.url)
-  const queryParams = new URLSearchParams(url.search)
-  const preview = !!queryParams.get('_storyblok')
-
+export const loader = async ({context}: LoaderArgs) => {
   const {data} = await getStoryblokApi().get(`cdn/stories/home`, {
-    version: preview ? 'draft' : 'published',
+    version: context.preview ? 'draft' : 'published',
     cv: +new Date(),
   })
 

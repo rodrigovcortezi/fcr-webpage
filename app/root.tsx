@@ -1,4 +1,5 @@
-import {json, type LinksFunction, type V2_MetaFunction} from '@remix-run/node'
+import {json} from '@remix-run/node'
+import type {LoaderArgs, LinksFunction, V2_MetaFunction} from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -25,7 +26,14 @@ storyblokInit({
   },
 })
 
-export const loader = async () => {
+const checkPreviewMode = (request: Request) => {
+  const url = new URL(request.url)
+  const queryParams = new URLSearchParams(url.search)
+  return Boolean(queryParams.get('_storyblok'))
+}
+
+export const loader = async ({request, context}: LoaderArgs) => {
+  context.preview = checkPreviewMode(request)
   return json({
     ENV: {
       STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,

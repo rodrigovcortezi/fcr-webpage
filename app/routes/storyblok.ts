@@ -1,4 +1,4 @@
-import {json} from '@remix-run/node'
+import {Response, json} from '@remix-run/node'
 import {getStoryblokApi} from '@storyblok/react'
 
 export const action = async () => {
@@ -11,4 +11,8 @@ export const action = async () => {
   })
 
   return json({}, {status: 204})
+}
+
+export const loader = async () => {
+  throw new Response(null, {status: 404, statusText: 'Not Found'})
 }

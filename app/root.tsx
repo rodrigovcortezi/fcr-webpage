@@ -26,7 +26,7 @@ storyblokInit({
     region: 'us',
     cache: {
       type: 'memory',
-      clear: 'auto',
+      clear: 'manual',
     },
   },
 })

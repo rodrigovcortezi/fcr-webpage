@@ -7,7 +7,6 @@ import {
   useStoryblokState,
 } from '@storyblok/react'
 import {HeroSection} from '~/components/hero-section'
-import {NavigationMenu} from '~/components/navigation-menu'
 
 export const loader = async ({context}: LoaderArgs) => {
   const {data} = await getStoryblokApi().get(`cdn/stories/home`, {
@@ -24,7 +23,6 @@ const IndexRoute = () => {
   const blok = story.content
   return (
     <div {...storyblokEditable(blok)}>
-      <NavigationMenu />
       <main className="w-full min-h-screen lg:pl-[350px] flex justify-center items-start py-32 sm:items-center">
         <HeroSection blok={blok.hero[0]} key={blok.hero[0]._uid} />
       </main>

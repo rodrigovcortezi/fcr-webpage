@@ -14,6 +14,7 @@ import tailwindStyles from '~/styles/tailwind.css'
 import appStyles from '~/styles/app.css'
 
 import {storyblokInit, apiPlugin} from '@storyblok/react'
+import {NavigationMenu} from './components/navigation-menu'
 
 storyblokInit({
   accessToken:
@@ -86,6 +87,7 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-gray-100 text-gray-500 text-base">
+        <NavigationMenu />
         <Outlet />
         <script
           dangerouslySetInnerHTML={{

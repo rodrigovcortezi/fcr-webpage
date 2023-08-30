@@ -60,18 +60,18 @@ const Menu = ({device = 'desktop'}: MenuProps) => {
 
 const MenuMobile = () => {
   const {pathname} = useLocation()
-  const [menuToggle, setMenuToggle] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setMenuToggle(false)
+    setOpen(false)
   }, [pathname])
 
   return (
     <nav className="flex lg:hidden justify-end px-5 pt-4 fixed z-10 w-screen">
       <div className="menu-toggle">
         <input
-          onChange={event => setMenuToggle(event.target.checked)}
-          checked={menuToggle}
+          onChange={event => setOpen(event.target.checked)}
+          checked={open}
           type="checkbox"
         />
         <span className="relative z-10"></span>

@@ -32,7 +32,7 @@ const HeroSection = ({blok}: {blok: any}) => {
   return (
     <div
       {...storyblokEditable(blok)}
-      className="flex flex-col md:flex-row items-center"
+      className="flex flex-col md:flex-row items-center font-montserrat"
     >
       <div className="mb-8 md:mb-0">
         <img

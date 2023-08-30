@@ -68,7 +68,105 @@ export const links: LinksFunction = () => [
   {
     rel: 'preload',
     as: 'font',
+    href: '/fonts/Montserrat/Montserrat-SemiBold.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Montserrat/Montserrat-Bold.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
     href: '/fonts/Montserrat/Montserrat-ExtraBold.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-ExtraLight.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-ExtraLightItalic.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-Light.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-LightItalic.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-Regular.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-Italic.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-Medium.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-MediumItalic.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-SemiBold.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-SemiBoldItalic.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-Bold.woff2',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    as: 'font',
+    href: '/fonts/Mulish/Mulish-BoldItalic.woff2',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
@@ -87,8 +185,14 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-gray-100 text-gray-500 text-base">
-        <NavigationMenu />
-        <Outlet />
+        <div className="max-w-8xl mx-auto">
+          <NavigationMenu />
+          <main className="lg:pl-[350px]">
+            <div className="px-10 max-w-[968px] mx-auto">
+              <Outlet />
+            </div>
+          </main>
+        </div>
         <script
           dangerouslySetInnerHTML={{
             __html: `window.ENV = ${JSON.stringify(data.ENV)}`,

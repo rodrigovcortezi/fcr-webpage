@@ -12,10 +12,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        sans: ['Mulish', ...defaultTheme.fontFamily.sans],
+        montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
-        ...defaultTheme.fontSize,
+        xs: ['12px', '30px'],
         base: ['15px', '30px'],
       },
       colors: {
@@ -27,7 +28,10 @@ export default {
           500: '#767676',
         },
       },
+      maxWidth: {
+        '8xl': '96rem',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 } satisfies Config

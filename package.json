@@ -21,6 +21,7 @@
     "@flydotio/dockerfile": "^0.4.8",
     "@remix-run/dev": "^1.19.3",
     "@remix-run/eslint-config": "^1.19.3",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.38.0",

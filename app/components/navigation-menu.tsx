@@ -43,7 +43,7 @@ const Menu = () => {
 
 const NavigationMenu = () => {
   return (
-    <>
+    <div className="font-montserrat">
       <div className="hidden lg:flex flex-col justify-center bg-white border-r border-solid border-gray-20 h-screen w-[350px] px-[70px] fixed">
         <nav aria-label="Sidebar">
           <Menu />
@@ -66,7 +66,7 @@ const NavigationMenu = () => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   )
 }
 

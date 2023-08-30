@@ -4,100 +4,15 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Black.woff2') format('woff2');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-BlackItalic.woff2') format('woff2');
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-BoldItalic.woff2') format('woff2');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-ExtraBold.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-ExtraBoldItalic.woff2') format('woff2');
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-ExtraLight.woff2') format('woff2');
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-ExtraLightItalic.woff2')
-    format('woff2');
-  font-weight: 200;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Italic.woff2') format('woff2');
+  src: url('/fonts/Montserrat/Montserrat-Regular.woff2') format('woff2');
   font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Light.woff2') format('woff2');
-  font-weight: 300;
   font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-LightItalic.woff2') format('woff2');
-  font-weight: 300;
-  font-style: italic;
 }
 
 @font-face {
   font-family: 'Montserrat';
   src: url('/fonts/Montserrat/Montserrat-Medium.woff2') format('woff2');
   font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-MediumItalic.woff2') format('woff2');
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Regular.woff2') format('woff2');
-  font-weight: 400;
   font-style: normal;
 }
 
@@ -110,21 +25,98 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-SemiBoldItalic.woff2') format('woff2');
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Thin.woff2') format('woff2');
-  font-weight: 100;
+  src: url('/fonts/Montserrat/Montserrat-Bold.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-ThinItalic.woff2') format('woff2');
-  font-weight: 100;
+  src: url('/fonts/Montserrat/Montserrat-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-ExtraLightItalic.woff2') format('woff2');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-SemiBoldItalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('/fonts/Mulish/Mulish-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
   font-style: italic;
 }

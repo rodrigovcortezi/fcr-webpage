@@ -1,43 +1,89 @@
 import {Link, useLocation} from '@remix-run/react'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 type MenuLinkProps = {
   to: string
+  spacingStyle: string
   children: React.ReactNode
 }
 
-const MenuLink = ({to, children}: MenuLinkProps) => {
+const MenuLink = ({to, spacingStyle, children}: MenuLinkProps) => {
   const location = useLocation()
-  const activeClass = location.pathname === to ? 'text-black' : ''
+  const activeStyle = location.pathname === to ? 'text-black' : ''
   return (
     <Link
-      className={`${activeClass} inline-block py-0.5 font-medium hover:text-black`}
+      className={`${activeStyle} inline-block ${spacingStyle} font-medium hover:text-black`}
       to={to}
+      prefetch="viewport"
     >
       {children}
     </Link>
   )
 }
 
-const Menu = () => {
+type MenuProps = {
+  device?: 'desktop' | 'mobile'
+}
+
+const Menu = ({device = 'desktop'}: MenuProps) => {
+  const spacing = device === 'desktop' ? 'py-0.5' : 'py-2'
   return (
-    <ul className="mt-[-0.25px]">
+    <ul className="mt-[-2px]">
       <li>
-        <MenuLink to="/">Home</MenuLink>
+        <MenuLink spacingStyle={spacing} to="/">
+          Home
+        </MenuLink>
       </li>
       <li>
-        <MenuLink to="/about">Sobre</MenuLink>
+        <MenuLink spacingStyle={spacing} to="/about">
+          Sobre
+        </MenuLink>
       </li>
       <li>
-        <MenuLink to=".">Consultoria</MenuLink>
+        <MenuLink spacingStyle={spacing} to=".">
+          Consultoria
+        </MenuLink>
       </li>
       <li>
-        <MenuLink to=".">Blog</MenuLink>
+        <MenuLink spacingStyle={spacing} to=".">
+          Blog
+        </MenuLink>
       </li>
       <li>
-        <MenuLink to=".">Contato</MenuLink>
+        <MenuLink spacingStyle={spacing} to=".">
+          Contato
+        </MenuLink>
       </li>
     </ul>
+  )
+}
+
+const MenuMobile = () => {
+  const {pathname} = useLocation()
+  const [menuToggle, setMenuToggle] = useState(false)
+
+  useEffect(() => {
+    setMenuToggle(false)
+  }, [pathname])
+
+  return (
+    <nav className="flex lg:hidden justify-end px-5 pt-4 fixed z-10 w-screen">
+      <div className="menu-toggle">
+        <input
+          onChange={event => setMenuToggle(event.target.checked)}
+          checked={menuToggle}
+          type="checkbox"
+        />
+        <span className="relative z-10"></span>
+        <span className="relative z-10 mt-2"></span>
+        <span className="relative z-10 mt-2"></span>
+        <div className="menu-mobile fixed right-[-200px] top-0 w-[200px] h-screen bg-white">
+          <div className="pt-36 px-5 text-right">
+            <Menu device="mobile" />
+          </div>
+        </div>
+      </div>
+    </nav>
   )
 }
 
@@ -53,19 +99,7 @@ const NavigationMenu = () => {
           <span className="font-medium text-gray-400"> Clarific</span>
         </p>
       </div>
-      <nav className="flex lg:hidden justify-end px-5 pt-4 fixed z-10 w-screen">
-        <div className="menu-toggle">
-          <input type="checkbox" />
-          <span className="relative z-10"></span>
-          <span className="relative z-10 mt-2"></span>
-          <span className="relative z-10 mt-2"></span>
-          <div className="menu-mobile fixed right-[-200px] top-0 w-[200px] h-screen bg-white">
-            <div className="pt-36 px-5 text-right">
-              <Menu />
-            </div>
-          </div>
-        </div>
-      </nav>
+      <MenuMobile />
     </div>
   )
 }

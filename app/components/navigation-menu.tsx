@@ -1,4 +1,4 @@
-import {Link, useLocation} from '@remix-run/react'
+import {NavLink, useLocation} from '@remix-run/react'
 import React, {useEffect, useState} from 'react'
 
 type MenuLinkProps = {
@@ -8,16 +8,17 @@ type MenuLinkProps = {
 }
 
 const MenuLink = ({to, spacingStyle, children}: MenuLinkProps) => {
-  const location = useLocation()
-  const activeStyle = location.pathname === to ? 'text-black' : ''
+  const staticStyle = `inline-block ${spacingStyle} font-medium hover:text-black`
   return (
-    <Link
-      className={`${activeStyle} inline-block ${spacingStyle} font-medium hover:text-black`}
+    <NavLink
+      className={({isActive}) =>
+        isActive ? staticStyle + ' text-black' : staticStyle
+      }
       to={to}
       prefetch="viewport"
     >
       {children}
-    </Link>
+    </NavLink>
   )
 }
 
@@ -40,17 +41,17 @@ const Menu = ({device = 'desktop'}: MenuProps) => {
         </MenuLink>
       </li>
       <li>
-        <MenuLink spacingStyle={spacing} to=".">
+        <MenuLink spacingStyle={spacing} to="/consulting">
           Consultoria
         </MenuLink>
       </li>
       <li>
-        <MenuLink spacingStyle={spacing} to=".">
+        <MenuLink spacingStyle={spacing} to="/blog">
           Blog
         </MenuLink>
       </li>
       <li>
-        <MenuLink spacingStyle={spacing} to=".">
+        <MenuLink spacingStyle={spacing} to="/contact">
           Contato
         </MenuLink>
       </li>

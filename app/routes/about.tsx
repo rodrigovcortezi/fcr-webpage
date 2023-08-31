@@ -27,7 +27,7 @@ const AboutRoute = () => {
           Sobre Mim
         </h2>
       </div>
-      <div className="bg-black mb-[35px]">
+      <div className="bg-[#090909] mb-[35px]">
         <img
           className="w-full object-contain max-h-[515px]"
           alt="Cover"

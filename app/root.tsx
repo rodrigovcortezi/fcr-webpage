@@ -24,10 +24,6 @@ storyblokInit({
   use: [apiPlugin],
   apiOptions: {
     region: 'us',
-    cache: {
-      type: 'memory',
-      clear: 'manual',
-    },
   },
 })
 

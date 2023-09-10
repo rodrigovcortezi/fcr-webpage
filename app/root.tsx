@@ -181,14 +181,10 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-gray-100 text-gray-500 text-base">
-        <div className="max-w-8xl mx-auto">
-          <NavigationMenu />
-          <main className="lg:pl-[350px]">
-            <div className="px-10 max-w-[968px] mx-auto">
-              <Outlet />
-            </div>
-          </main>
-        </div>
+        <NavigationMenu />
+        <main className="lg:pl-[350px]">
+          <Outlet />
+        </main>
         <script
           dangerouslySetInnerHTML={{
             __html: `window.ENV = ${JSON.stringify(data.ENV)}`,

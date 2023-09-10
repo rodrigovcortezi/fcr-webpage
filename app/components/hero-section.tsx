@@ -38,8 +38,8 @@ const HeroSection = ({blok}: {blok: any}) => {
         <img
           className="h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] object-cover object-center rounded-full"
           src={imageResolver(profile.filename)}
-          srcSet={imageSrcSet(profile.filename, [200, 250, 400, 500, 600])}
-          sizes="(max-width: 768px) 200px, 250px"
+          srcSet={imageSrcSet(profile.filename, [400, 500, 600, 800])}
+          sizes="(max-width: 768px) 200px, 400px"
           alt="Profile"
         />
       </div>

@@ -59,3 +59,50 @@
 .menu-toggle input:checked ~ .menu-mobile {
   transform: translate(-100%, 0);
 }
+
+/** Education list **/
+
+li.timeline-item {
+  position: relative;
+  padding-left: 20px;
+  width: 100%;
+}
+
+li.timeline-item::before {
+  position: absolute;
+  left: -8px;
+  top: 10px;
+  content: '';
+  width: 18px;
+  height: 18px;
+  border: solid 1px #ccc;
+  border-radius: 100%;
+  background-color: white;
+}
+
+li.timeline-item:not(:last-child) {
+  padding-bottom: 45px;
+}
+
+/** Carousel component **/
+
+.carousel {
+  overflow-x: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 30px;
+  will-change: transform;
+}
+
+.carousel-item {
+  flex: 0 0 100%;
+  transition: opacity 0.7s ease;
+}
+
+@screen sm {
+  .carousel-item {
+    flex: 0 0 calc(50% - 15px);
+  }
+}

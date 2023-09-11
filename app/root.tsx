@@ -8,13 +8,17 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useLocation,
 } from '@remix-run/react'
+
+import {TransitionGroup, CSSTransition} from 'react-transition-group'
 
 import tailwindStyles from '~/styles/tailwind.css'
 import appStyles from '~/styles/app.css'
 
 import {storyblokInit, apiPlugin} from '@storyblok/react'
 import {NavigationMenu} from './components/navigation-menu'
+import {useRef} from 'react'
 
 storyblokInit({
   accessToken:
@@ -172,6 +176,8 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   const data = useLoaderData<typeof loader>()
+  const nodeRef = useRef(null)
+  const location = useLocation()
   return (
     <html lang="en">
       <head>
@@ -183,7 +189,18 @@ export default function App() {
       <body className="bg-gray-100 text-gray-500 text-base">
         <NavigationMenu />
         <main className="lg:pl-[350px]">
-          <Outlet />
+          <TransitionGroup>
+            <CSSTransition
+              key={location.pathname}
+              nodeRef={nodeRef}
+              classNames="page"
+              timeout={500}
+            >
+              <div ref={nodeRef}>
+                <Outlet />
+              </div>
+            </CSSTransition>
+          </TransitionGroup>
         </main>
         <script
           dangerouslySetInnerHTML={{

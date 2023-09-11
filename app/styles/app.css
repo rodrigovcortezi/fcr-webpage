@@ -2,6 +2,15 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /***
 *
 * Menu button
@@ -105,4 +114,15 @@ li.timeline-item:not(:last-child) {
   .carousel-item {
     flex: 0 0 calc(50% - 15px);
   }
+}
+
+.page-enter {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: none;
+  transition: transform 500ms ease-out, opacity 500ms ease;
 }

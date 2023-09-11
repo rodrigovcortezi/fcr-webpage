@@ -68,7 +68,7 @@ const MenuMobile = () => {
   }, [pathname])
 
   return (
-    <nav className="flex lg:hidden justify-end px-5 pt-4 fixed z-10 w-screen">
+    <nav className="flex lg:hidden justify-end px-5 py-4 fixed z-10 w-screen bg-white">
       <div className="menu-toggle">
         <input
           onChange={event => setOpen(event.target.checked)}

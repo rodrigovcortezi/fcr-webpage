@@ -117,11 +117,47 @@ const AboutRoute = () => {
           </div>
         </section>
       ) : null}
-      {education.active ? (
+      {knowledge.active ? (
         <section
-          {...storyblokEditable(education)}
+          {...storyblokEditable(knowledge)}
           className="py-[100px] bg-white"
         >
+          <div className="container">
+            <div className="flex flex-col sm:flex-row">
+              <div className="w-full sm:w-1/2 pr-0 sm:pr-[50px] pb-[60px] sm:pb-0">
+                <div className="font-montserrat mb-[40px]">
+                  <h3 className="text-black font-bold text-xl">
+                    Conhecimentos
+                  </h3>
+                </div>
+                <div>
+                  <ul className="list-none">
+                    {(knowledge.experiences as Array<any>).map(e => (
+                      <BulletItem key={e._uid}>{e.text}</BulletItem>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="w-full sm:w-1/2 pl-0 sm:pl-[50px]">
+                <div className="font-montserrat mb-[40px]">
+                  <h3 className="text-black font-bold text-xl">
+                    Especialidades
+                  </h3>
+                </div>
+                <div>
+                  <ul className="list-none">
+                    {(knowledge.specialties as Array<any>).map(e => (
+                      <BulletItem key={e._uid}>{e.text}</BulletItem>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+      {education.active ? (
+        <section {...storyblokEditable(education)} className="py-[100px]">
           <div className="container">
             <div className="flex flex-col sm:flex-row">
               <div className="w-full sm:w-1/2 pr-0 sm:pr-[50px] pb-[60px] sm:pb-0">
@@ -156,40 +192,6 @@ const AboutRoute = () => {
                         name={e.name}
                         description={e.description}
                       />
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      ) : null}
-      {knowledge.active ? (
-        <section {...storyblokEditable(knowledge)} className="py-[100px]">
-          <div className="container">
-            <div className="flex flex-col sm:flex-row">
-              <div className="w-full sm:w-1/2 pr-0 sm:pr-[50px] pb-[60px] sm:pb-0">
-                <div className="font-montserrat mb-[40px]">
-                  <h3 className="text-black font-bold text-xl">Conhecimento</h3>
-                </div>
-                <div>
-                  <ul className="list-none">
-                    {(knowledge.experiences as Array<any>).map(e => (
-                      <BulletItem key={e._uid}>{e.text}</BulletItem>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="w-full sm:w-1/2 pl-0 sm:pl-[50px]">
-                <div className="font-montserrat mb-[40px]">
-                  <h3 className="text-black font-bold text-xl">
-                    Especialidades
-                  </h3>
-                </div>
-                <div>
-                  <ul className="list-none">
-                    {(knowledge.specialties as Array<any>).map(e => (
-                      <BulletItem key={e._uid}>{e.text}</BulletItem>
                     ))}
                   </ul>
                 </div>

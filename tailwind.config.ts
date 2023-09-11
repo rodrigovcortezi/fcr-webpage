@@ -9,6 +9,7 @@ export default {
       sm: '768px',
       md: '1040px',
       lg: '1200px',
+      xl: '1600px',
     },
     extend: {
       fontFamily: {

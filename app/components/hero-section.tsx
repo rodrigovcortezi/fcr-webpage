@@ -36,7 +36,7 @@ const HeroSection = ({blok}: {blok: any}) => {
     >
       <div className="mb-8 md:mb-0">
         <img
-          className="h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] object-cover object-center rounded-full"
+          className="h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] xl:w-[300px] xl:h-[300px] object-cover object-center rounded-full"
           src={imageResolver(profile.filename)}
           srcSet={imageSrcSet(profile.filename, [400, 500, 600, 800])}
           sizes="(max-width: 768px) 200px, 400px"
@@ -44,7 +44,7 @@ const HeroSection = ({blok}: {blok: any}) => {
         />
       </div>
       <div className="md:ml-20">
-        <h3 className="text-center md:text-start font-extrabold text-black text-3xl sm:text-5xl mb-3 sm:mb-4">
+        <h3 className="text-center md:text-start font-extrabold text-black text-3xl sm:text-5xl xl:text-[55px] mb-3 sm:mb-4">
           {blok.headline}
         </h3>
         <p className="text-center md:text-start font-medium mb-9">

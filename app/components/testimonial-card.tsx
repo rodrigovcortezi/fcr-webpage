@@ -12,9 +12,9 @@ const TestimonialCard = ({
   text,
 }: TestimonialCardProps) => {
   return (
-    <div>
-      <div className="border-solid border-2 border-[#E5EDF4] p-[40px] mb-[30px]">
-        <p>{text}</p>
+    <div className="flex flex-col h-full">
+      <div className="border-solid border-2 border-[#E5EDF4] p-[40px] mb-[30px] grow">
+        <p className="">{text}</p>
       </div>
       <div className="flex pl-[20px]">
         <img

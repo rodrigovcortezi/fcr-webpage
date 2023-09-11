@@ -22,8 +22,11 @@ const Carousel = ({interval, children}: CarouselProps) => {
 
 const Slider = ({interval = 5, children}: CarouselProps) => {
   const mounted = useMounted()
-  const [windowSize, setWindowSize] = useState({})
-  const [index, setIndex] = useState(0)
+  const [windowSize, setWindowSize] = useState<{
+    width?: number
+    height?: number
+  }>({})
+  const [index, setIndex] = useState(2)
   const timer = useRef(interval)
   const paused = useRef(false)
   const trackRef = useRef<HTMLDivElement>(null)
@@ -49,16 +52,18 @@ const Slider = ({interval = 5, children}: CarouselProps) => {
   const [transitionActive, setTransitionActive] = useState(false)
   const transitionStyle = transitionActive ? 'transform 0.7s ease-out' : 'none'
 
+  const windowWidth = windowSize?.width
+
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize({})
+      setWindowSize({width: window.innerWidth, height: window.innerHeight})
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   useEffect(() => {
-    if (!trackRef.current || !itemRef.current) {
+    if (!windowWidth || !trackRef.current || !itemRef.current) {
       return
     }
 
@@ -67,9 +72,8 @@ const Slider = ({interval = 5, children}: CarouselProps) => {
       .getComputedStyle(trackRef.current)
       .getPropertyValue('column-gap')
     shiftRef.current = `calc(-1 * (${itemWidth}px + ${gap}))`
-
     setIndex(2)
-  }, [windowSize])
+  }, [windowWidth])
 
   useEffect(() => {
     const intervalId = setInterval(() => {

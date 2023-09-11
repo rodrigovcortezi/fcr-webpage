@@ -20,8 +20,8 @@ const TestimonialCard = ({
         <img
           alt="testimonial"
           src={image}
-          width={858}
-          height={800}
+          width={60}
+          height={60}
           className="w-[60px] h-auto rounded-full"
         />
         <div className="pl-[20px]">

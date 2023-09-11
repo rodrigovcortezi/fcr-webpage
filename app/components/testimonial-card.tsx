@@ -22,7 +22,7 @@ const TestimonialCard = ({
           src={image}
           width={60}
           height={60}
-          className="w-[60px] h-auto rounded-full"
+          className="w-[60px] h-[60px] rounded-full object-contain"
         />
         <div className="pl-[20px]">
           <h3 className="text-black text-[16px] font-semibold leading-none mt-[6px] mb-[3px]">

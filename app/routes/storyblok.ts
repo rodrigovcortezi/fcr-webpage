@@ -1,12 +1,9 @@
 import {Response, json} from '@remix-run/node'
-import {getStoryblokApi} from '@storyblok/react'
+import {storyblokClient} from '~/helpers/storyblok'
 
 export const action = async () => {
   // updates cache version in storyblok client
-  await getStoryblokApi().get('cdn/spaces/me', {
-    version: 'published',
-    cv: +new Date(),
-  })
+  await storyblokClient.refresh()
 
   return json({}, {status: 204})
 }

@@ -1,3 +1,5 @@
+import {imageResolver} from '~/helpers/image'
+
 type TestimonialCardProps = {
   name: string
   image: string
@@ -19,7 +21,7 @@ const TestimonialCard = ({
       <div className="flex pl-[20px]">
         <img
           alt="testimonial"
-          src={image}
+          src={imageResolver(image, {width: 200})}
           width={60}
           height={60}
           className="w-[60px] h-[60px] rounded-full object-contain"

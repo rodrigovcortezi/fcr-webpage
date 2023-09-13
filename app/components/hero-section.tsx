@@ -6,6 +6,7 @@ import {
   TwitterIcon,
 } from '~/components/icons'
 import {imageResolver, imageSrcSet} from '~/helpers/image'
+import {type HeroData} from '~/types/storyblok'
 
 type SocialLinkProps = {
   href: string
@@ -27,7 +28,11 @@ const SociaLink = ({href, label, children}: SocialLinkProps) => {
   )
 }
 
-const HeroSection = ({blok}: {blok: any}) => {
+type HeroSectionProps = {
+  blok: HeroData
+}
+
+const HeroSection = ({blok}: HeroSectionProps) => {
   const {profile} = blok
   return (
     <div

@@ -1,6 +1,7 @@
 import {json, type LoaderArgs} from '@remix-run/node'
 import {useLoaderData} from '@remix-run/react'
 import {
+  type ISbStoryData,
   RichTextResolver,
   storyblokEditable,
   useStoryblokState,
@@ -9,6 +10,7 @@ import {type ReactNode} from 'react'
 import {TestimonialsSection} from '~/components/testimonials-section'
 import {imageResolver, imageSrcSet} from '~/helpers/image'
 import {storyblokClient} from '~/helpers/storyblok'
+import type {AboutPage} from '~/types/storyblok'
 
 export const loader = async ({context}: LoaderArgs) => {
   const data = await storyblokClient.get('about', context)
@@ -68,12 +70,17 @@ const BulletItem = ({children}: BulletItemProps) => {
 }
 
 const AboutRoute = () => {
-  let story = useLoaderData<typeof loader>()
-  story = useStoryblokState(story)
+  const storyData = useLoaderData<typeof loader>() as ISbStoryData<AboutPage>
+  const story = useStoryblokState(storyData)
+  if (story === null) {
+    return null
+  }
+
   const blok = story.content
   const [presentation] = blok.presentation
   const [education] = blok.education
   const [knowledge] = blok.knowledge
+  const [testimonials] = blok.testimonials
 
   const html = new RichTextResolver().render(presentation.text)
 
@@ -132,7 +139,7 @@ const AboutRoute = () => {
                 </div>
                 <div>
                   <ul className="list-none">
-                    {(knowledge.experiences as Array<any>).map(e => (
+                    {knowledge.experiences.map(e => (
                       <BulletItem key={e._uid}>{e.text}</BulletItem>
                     ))}
                   </ul>
@@ -146,7 +153,7 @@ const AboutRoute = () => {
                 </div>
                 <div>
                   <ul className="list-none">
-                    {(knowledge.specialties as Array<any>).map(e => (
+                    {knowledge.specialties.map(e => (
                       <BulletItem key={e._uid}>{e.text}</BulletItem>
                     ))}
                   </ul>
@@ -166,7 +173,7 @@ const AboutRoute = () => {
                 </div>
                 <div className="relative">
                   <ul className="pt-[10px] before:content-[''] before:absolute before:w-[1px] before:top-0 before:left-0 before:h-full before:bg-[rgba(0,0,0,.07)]">
-                    {(education.education_timeline as Array<any>).map(e => (
+                    {education.education_timeline.map(e => (
                       <TimelineItem
                         key={e._uid}
                         start={e.start}
@@ -184,7 +191,7 @@ const AboutRoute = () => {
                 </div>
                 <div className="relative">
                   <ul className="pt-[10px] before:content-[''] before:absolute before:w-[1px] before:top-0 before:left-0 before:h-full before:bg-[rgba(0,0,0,.07)]">
-                    {(education.experiences_timeline as Array<any>).map(e => (
+                    {education.experiences_timeline.map(e => (
                       <TimelineItem
                         key={e._uid}
                         start={e.start}
@@ -200,7 +207,7 @@ const AboutRoute = () => {
           </div>
         </section>
       ) : null}
-      <TestimonialsSection blok={blok.testimonials[0]} />
+      <TestimonialsSection blok={testimonials} />
     </>
   )
 }

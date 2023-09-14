@@ -27,8 +27,8 @@ export const imageResolver = (
 
   const aspectRatio = dimensions.width / dimensions.height
   const targetDimension = {
-    width: width || Math.floor(height * aspectRatio),
-    height: height || Math.floor(width / aspectRatio),
+    width: width || Math.round(height * aspectRatio),
+    height: height || Math.round(width / aspectRatio),
   }
 
   return {url: targetUrl, dimensions: targetDimension}

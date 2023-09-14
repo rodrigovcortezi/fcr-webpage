@@ -13,6 +13,7 @@ const TestimonialCard = ({
   profession,
   text,
 }: TestimonialCardProps) => {
+  const resolvedImage = imageResolver(image, {width: 200})
   return (
     <div className="flex flex-col h-full">
       <div className="border-solid border-2 border-[#E5EDF4] p-[40px] mb-[30px] grow">
@@ -21,9 +22,9 @@ const TestimonialCard = ({
       <div className="flex pl-[20px]">
         <img
           alt="testimonial"
-          src={imageResolver(image, {width: 200})}
-          width={60}
-          height={60}
+          src={resolvedImage.url}
+          width={resolvedImage.dimensions.width}
+          height={resolvedImage.dimensions.height}
           className="w-[60px] h-[60px] rounded-full object-contain"
         />
         <div className="pl-[20px]">

@@ -2,13 +2,12 @@ import {json, type LoaderArgs} from '@remix-run/node'
 import {useLoaderData} from '@remix-run/react'
 import {
   type ISbStoryData,
-  RichTextResolver,
   storyblokEditable,
   useStoryblokState,
 } from '@storyblok/react'
 import {type ReactNode} from 'react'
+import {PresentationSection} from '~/components/presentation-section'
 import {TestimonialsSection} from '~/components/testimonials-section'
-import {imageResolver, imageSrcSet} from '~/helpers/image'
 import {storyblokClient} from '~/helpers/storyblok'
 import type {AboutPage} from '~/types/storyblok'
 
@@ -82,7 +81,7 @@ const AboutRoute = () => {
   const [knowledge] = blok.knowledge
   const [testimonials] = blok.testimonials
 
-  const html = new RichTextResolver().render(presentation.text)
+  console.log(presentation)
 
   return (
     <>
@@ -96,34 +95,7 @@ const AboutRoute = () => {
           </h2>
         </div>
       </div>
-      {presentation.active ? (
-        <section {...storyblokEditable(presentation)} className="pb-[100px]">
-          <div className="container">
-            <div className="bg-[#090909] mb-[35px]">
-              <img
-                className="w-full object-contain max-h-[515px]"
-                alt="Cover"
-                src={imageResolver(presentation.cover.filename)}
-                srcSet={imageSrcSet(
-                  presentation.cover.filename,
-                  [600, 900, 1200, 1500, 1800, 2100],
-                )}
-                sizes="(max-width: 1200px) 100vw, 70vw"
-              />
-            </div>
-            <div className="font-montserrat border-solid border-[#DFDFDF] border-b pb-[20px] mb-[30px]">
-              <h3 className="text-[22px] text-black font-bold">
-                {presentation.name}
-              </h3>
-              <span>{presentation.subtitle}</span>
-            </div>
-            <article
-              className="prose text-gray-500 text-base max-w-full"
-              dangerouslySetInnerHTML={{__html: html}}
-            ></article>
-          </div>
-        </section>
-      ) : null}
+      <PresentationSection blok={presentation} />
       {knowledge.active ? (
         <section
           {...storyblokEditable(knowledge)}

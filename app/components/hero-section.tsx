@@ -34,6 +34,7 @@ type HeroSectionProps = {
 
 const HeroSection = ({blok}: HeroSectionProps) => {
   const {profile} = blok
+  const resolvedImage = imageResolver(profile.filename)
   return (
     <div
       {...storyblokEditable(blok)}
@@ -42,7 +43,9 @@ const HeroSection = ({blok}: HeroSectionProps) => {
       <div className="mb-8 md:mb-0">
         <img
           className="h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] xl:w-[300px] xl:h-[300px] object-cover object-center rounded-full"
-          src={imageResolver(profile.filename)}
+          width={resolvedImage.dimensions.width}
+          height={resolvedImage.dimensions.height}
+          src={resolvedImage.url}
           srcSet={imageSrcSet(profile.filename, [400, 500, 600, 800])}
           sizes="(max-width: 768px) 200px, 400px"
           alt="Profile"

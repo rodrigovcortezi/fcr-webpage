@@ -65,5 +65,5 @@ export interface ArticleData extends SbBlokData {
   cover: {filename: string}
   author: string
   date: string
-  text: string
+  text: ISbRichtext
 }

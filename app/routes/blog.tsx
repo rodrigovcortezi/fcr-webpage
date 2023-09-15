@@ -1,5 +1,5 @@
 import {type LoaderArgs, json} from '@remix-run/node'
-import {useLoaderData} from '@remix-run/react'
+import {Link, useLoaderData} from '@remix-run/react'
 import {type ISbStoryData} from '@storyblok/react'
 import {ArticleCard} from '~/components/article-card'
 import {storyblokClient} from '~/helpers/storyblok'
@@ -18,8 +18,6 @@ const BlogRoute = () => {
     return null
   }
 
-  const articles = storiesData.map(data => data.content)
-
   return (
     <>
       <div className="container pt-[100px]">
@@ -34,12 +32,14 @@ const BlogRoute = () => {
       </div>
       <div className="container pb-[100px]">
         <div className="flex flex-wrap ml-[-50px]">
-          {articles.map(a => (
+          {storiesData.map(story => (
             <div
-              key={a._uid}
+              key={story.content._uid}
               className="flex-[0_0_100%] sm:flex-[0_0_50%] mb-[50px] pl-[50px]"
             >
-              <ArticleCard blok={a} />
+              <Link to={`/blog/${story.slug}`}>
+                <ArticleCard blok={story.content} />
+              </Link>
             </div>
           ))}
         </div>

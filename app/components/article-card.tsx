@@ -28,7 +28,7 @@ const ArticleCard = ({blok}: ArticleCardProps) => {
         <div className="relative mb-6">
           <div className="before:content-[''] before:absolute before:h-[1px] before:w-full before:bottom-[-7px] before:bg-[rgba(0,0,0,.1)]">
             <p className="text-[13px] text-gray-500">
-              Por {blok.author}
+              {blok.author}
               <span className="mx-2">/</span>
               {formattedDate}
             </p>

@@ -12,7 +12,7 @@ import {storyblokClient} from '~/helpers/storyblok'
 import type {AboutPage} from '~/types/storyblok'
 
 export const loader = async ({context}: LoaderArgs) => {
-  const data = await storyblokClient.get('about', context)
+  const data = await storyblokClient.getStory('about', context)
   return json(data?.story)
 }
 
@@ -80,8 +80,6 @@ const AboutRoute = () => {
   const [education] = blok.education
   const [knowledge] = blok.knowledge
   const [testimonials] = blok.testimonials
-
-  console.log(presentation)
 
   return (
     <>

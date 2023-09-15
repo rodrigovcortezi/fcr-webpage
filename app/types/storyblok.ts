@@ -59,3 +59,11 @@ export interface AboutPage extends SbBlokData {
   knowledge: [KnowledgeData]
   testimonials: [TestimonialsData]
 }
+
+export interface ArticleData extends SbBlokData {
+  title: string
+  cover: {filename: string}
+  author: string
+  date: string
+  text: string
+}

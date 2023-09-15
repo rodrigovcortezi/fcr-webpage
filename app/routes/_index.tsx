@@ -11,7 +11,7 @@ import {storyblokClient} from '~/helpers/storyblok'
 import {type IndexPageData} from '~/types/storyblok'
 
 export const loader = async ({context}: LoaderArgs) => {
-  const data = await storyblokClient.get('home', context)
+  const data = await storyblokClient.getStory('home', context)
   return json(data?.story)
 }
 

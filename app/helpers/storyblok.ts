@@ -4,8 +4,17 @@ import {getStoryblokApi} from '@storyblok/react'
 const client = getStoryblokApi()
 
 const storyblokClient = {
-  get: async (slug: string, context: AppLoadContext) => {
+  getStory: async (slug: string, context: AppLoadContext) => {
     const {data} = await client.get(`cdn/stories/${slug}`, {
+      version: context.preview ? 'draft' : 'published',
+      cv: context.preview ? new Date().getTime() : undefined,
+    })
+
+    return data
+  },
+  getFolder: async (slug: string, context: AppLoadContext) => {
+    const {data} = await client.get(`cdn/stories`, {
+      starts_with: slug,
       version: context.preview ? 'draft' : 'published',
       cv: context.preview ? new Date().getTime() : undefined,
     })

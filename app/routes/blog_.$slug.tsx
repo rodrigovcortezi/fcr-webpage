@@ -43,7 +43,7 @@ const ArticleRoute = () => {
           width={resolvedImage.dimensions.width}
           height={resolvedImage.dimensions.height}
           src={resolvedImage.url}
-          className="w-full h-[550px] object-cover grayscale"
+          className="w-full h-[250px] sm:h-[550px] object-cover grayscale"
         />
       </div>
       <div className="font-montserrat mb-7">
@@ -56,7 +56,9 @@ const ArticleRoute = () => {
             </p>
           </div>
         </div>
-        <h1 className="font-semibold text-black text-3xl">{blok.title}</h1>
+        <h1 className="font-semibold text-black text-2xl sm:text-3xl">
+          {blok.title}
+        </h1>
       </div>
       <article
         className="prose text-[16px] leading-8 text-black max-w-full"

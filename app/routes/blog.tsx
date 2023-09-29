@@ -37,7 +37,7 @@ const BlogRoute = () => {
               key={story.content._uid}
               className="flex-[0_0_100%] sm:flex-[0_0_50%] mb-[50px] pl-[50px]"
             >
-              <Link to={`/blog/${story.slug}`}>
+              <Link prefetch="viewport" to={`/blog/${story.slug}`}>
                 <ArticleCard blok={story.content} />
               </Link>
             </div>

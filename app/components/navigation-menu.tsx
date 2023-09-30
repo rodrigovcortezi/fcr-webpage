@@ -41,11 +41,6 @@ const Menu = ({device = 'desktop'}: MenuProps) => {
         </MenuLink>
       </li>
       <li>
-        <MenuLink spacingStyle={spacing} to="/consulting">
-          Consultoria
-        </MenuLink>
-      </li>
-      <li>
         <MenuLink spacingStyle={spacing} to="/blog">
           Blog
         </MenuLink>

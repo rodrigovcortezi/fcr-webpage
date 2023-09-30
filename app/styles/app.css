@@ -116,6 +116,8 @@ li.timeline-item:not(:last-child) {
   }
 }
 
+/** Page transitions **/
+
 .page-enter {
   opacity: 0;
   transform: translateX(-20px);
@@ -126,6 +128,8 @@ li.timeline-item:not(:last-child) {
   transform: none;
   transition: transform 500ms ease-out, opacity 500ms ease;
 }
+
+/** Loading ellipsis **/
 
 .loading-ellipsis span {
   animation: ellipsis 1s infinite;
@@ -168,4 +172,14 @@ li.timeline-item:not(:last-child) {
   100% {
     opacity: 0;
   }
+}
+
+/** Form validation **/
+
+.form-validation-error {
+  position: absolute;
+  color: red;
+  font-size: 0.8em;
+  line-height: 1;
+  bottom: -17px;
 }

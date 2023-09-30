@@ -12,7 +12,9 @@ export const sendContactEmail = (
     to: 'fcrwebsite2023@gmail.com',
     subject: 'Formuário de contato',
     html: `
-      <h3>${name} mandou um mensagem pelo seu site pessoal:</h3>
+      <i><strong>${name}</strong> enviou uma mensagem através do formulário de contato:</i>
+      <br>
+      <br>
       <br>
       <p>${message}</p>
     `,

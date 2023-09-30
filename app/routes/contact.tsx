@@ -1,7 +1,38 @@
 import {type ActionArgs, json, redirect} from '@remix-run/node'
-import {Form, useNavigation, useSearchParams} from '@remix-run/react'
+import {
+  Form,
+  useActionData,
+  useNavigation,
+  useSearchParams,
+} from '@remix-run/react'
 import {Modal} from '~/components/modal'
 import {sendContactEmail} from '~/helpers/email'
+
+const validateContactName = (value: string) => {
+  if (value.length == 0) {
+    return 'Campo obrigatório'
+  }
+}
+
+const validateContactEmail = (value: string) => {
+  if (value.length === 0) {
+    return 'Campo obrigatório'
+  }
+
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+  if (!regex.test(value)) {
+    return 'Campo inválido'
+  }
+}
+
+const validateContactMessage = (value: string) => {
+  if (value.length < 20) {
+    return 'Mínimo de 20 caracteres'
+  }
+  if (value.length > 10000) {
+    return 'Limite de caracteres excedido'
+  }
+}
 
 export const action = async ({request}: ActionArgs) => {
   const form = await request.formData()
@@ -15,11 +46,59 @@ export const action = async ({request}: ActionArgs) => {
   ) {
     return json(null, {status: 400})
   }
+
+  const fieldErrors = {
+    name: validateContactName(name),
+    email: validateContactEmail(email),
+    message: validateContactMessage(message),
+  }
+  if (Object.values(fieldErrors).some(Boolean)) {
+    return json({fieldErrors}, {status: 400})
+  }
+
   await sendContactEmail(name, email, message)
+
   return redirect('/contact?success=true', {})
 }
 
+type ContactInputParams = {
+  as?: 'input' | 'textarea'
+  id?: string
+  name?: string
+  type?: string
+  placeholder?: string
+  'aria-invalid'?: boolean
+  'aria-errormessage'?: string
+}
+
+const ContactInput = ({
+  as: Component = 'input',
+  id,
+  name,
+  type,
+  placeholder,
+  'aria-invalid': ariaInvalid,
+  'aria-errormessage': ariaErrormessage,
+}: ContactInputParams) => {
+  const textareaStyle = 'resize-none h-[200px]'
+  return (
+    <Component
+      id={id}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      aria-invalid={ariaInvalid}
+      aria-errormessage={ariaErrormessage}
+      className={`${
+        Component === 'textarea' ? textareaStyle : ''
+      } block w-full bg-transparent text-base font-montserrat border-solid border-[1px] border-[rgba(0,0,0,.2)] focus:ring-0 focus:border-black`}
+    />
+  )
+}
+
 const ContactRoute = () => {
+  const actionData = useActionData<typeof action>()
+  const fieldErrors = actionData?.fieldErrors
   const navigation = useNavigation()
   const [searchParams, setSearchParams] = useSearchParams()
   const success = Boolean(searchParams.get('success'))
@@ -48,26 +127,61 @@ const ContactRoute = () => {
       </div>
       <div className="container pb-[100px]">
         <Form method="post" replace>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Nome"
-            className="block w-full mb-7 bg-transparent text-base font-montserrat border-solid border-[1px] border-[rgba(0,0,0,.2)] focus:ring-0 focus:border-black"
-          />
-          <input
-            id="email"
-            name="email"
-            type="text"
-            placeholder="Email"
-            className="block w-full mb-7 bg-transparent text-base font-montserrat border-solid border-[1px] border-[rgba(0,0,0,.2)] focus:ring-0 focus:border-black"
-          />
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Mensagem"
-            className="block w-full mb-7 h-[200px] resize-none bg-transparent text-base border-solid border-[1px] border-[rgba(0,0,0,.2)] focus:ring-0 focus:border-black"
-          />
+          <div className="relative mb-8">
+            <ContactInput
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Nome"
+              aria-invalid={Boolean(fieldErrors?.name)}
+              aria-errormessage={fieldErrors?.name ? 'name-error' : undefined}
+            />
+            {fieldErrors?.name ? (
+              <p id="name-error" role="alert" className="form-validation-error">
+                {fieldErrors.name}
+              </p>
+            ) : null}
+          </div>
+          <div className="relative mb-8">
+            <ContactInput
+              id="email"
+              name="email"
+              type="text"
+              placeholder="Email"
+              aria-invalid={Boolean(fieldErrors?.email)}
+              aria-errormessage={fieldErrors?.email ? 'email-error' : undefined}
+            />
+            {fieldErrors?.email ? (
+              <p
+                id="email-error"
+                role="alert"
+                className="form-validation-error"
+              >
+                {fieldErrors.email}
+              </p>
+            ) : null}
+          </div>
+          <div className="relative mb-8">
+            <ContactInput
+              id="message"
+              name="message"
+              placeholder="Mensagem"
+              as="textarea"
+              aria-invalid={Boolean(fieldErrors?.message)}
+              aria-errormessage={
+                fieldErrors?.message ? 'message-error' : undefined
+              }
+            />
+            {fieldErrors?.message ? (
+              <p
+                id="message-error"
+                role="alert"
+                className="form-validation-error"
+              >
+                {fieldErrors.message}
+              </p>
+            ) : null}
+          </div>
           <button
             type="submit"
             disabled={navigation.state === 'submitting'}

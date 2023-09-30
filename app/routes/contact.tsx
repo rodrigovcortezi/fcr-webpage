@@ -5,6 +5,7 @@ import {
   useNavigation,
   useSearchParams,
 } from '@remix-run/react'
+import {useEffect, useState} from 'react'
 import {Modal} from '~/components/modal'
 import {sendContactEmail} from '~/helpers/email'
 
@@ -99,9 +100,23 @@ const ContactInput = ({
 const ContactRoute = () => {
   const actionData = useActionData<typeof action>()
   const fieldErrors = actionData?.fieldErrors
-  const navigation = useNavigation()
+  const {state: navigationState} = useNavigation()
   const [searchParams, setSearchParams] = useSearchParams()
   const success = Boolean(searchParams.get('success'))
+  const [submitting, setSubmitting] = useState(false)
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+    if (navigationState === 'submitting') {
+      timeout = setTimeout(() => setSubmitting(true), 200)
+    } else {
+      setSubmitting(false)
+    }
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [navigationState])
 
   const handleModalClose = () => {
     setSearchParams(new URLSearchParams(), {replace: true})
@@ -184,10 +199,10 @@ const ContactRoute = () => {
           </div>
           <button
             type="submit"
-            disabled={navigation.state === 'submitting'}
+            disabled={navigationState === 'submitting'}
             className="text-white bg-black py-2 px-10 hover:bg-opacity-80 disabled:bg-opacity-60"
           >
-            {navigation.state === 'submitting' ? (
+            {submitting ? (
               <span className="loading-ellipsis">
                 Enviando
                 <span>.</span>

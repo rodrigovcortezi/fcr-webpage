@@ -6,6 +6,7 @@ export const sendContactEmail = (
   message: string,
 ) => {
   const resend = new Resend(process.env.RESEND_API_KEY)
+  const text = message.replace(/\n/g, '<br/>')
   return resend.emails.send({
     from: 'Meu website <onboarding@resend.dev>',
     reply_to: email,
@@ -16,7 +17,7 @@ export const sendContactEmail = (
       <br>
       <br>
       <br>
-      <p>${message}</p>
+      <p>${text}</p>
     `,
   })
 }

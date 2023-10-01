@@ -8,9 +8,9 @@ export const sendContactEmail = (
   const resend = new Resend(process.env.RESEND_API_KEY)
   const text = message.replace(/\n/g, '<br/>')
   return resend.emails.send({
-    from: 'Meu website <onboarding@resend.dev>',
+    from: 'Meu website <website@fernandocortezi.com.br>',
     reply_to: email,
-    to: 'fcrwebsite2023@gmail.com',
+    to: 'fcortezi@icloud.com',
     subject: 'Formuário de contato',
     html: `
       <i><strong>${name}</strong> enviou uma mensagem através do formulário de contato:</i>

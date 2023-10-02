@@ -10,7 +10,7 @@ export const sendContactEmail = (
   return resend.emails.send({
     from: 'Meu website <website@fernandocortezi.com.br>',
     reply_to: email,
-    to: 'fcortezi@icloud.com',
+    to: 'fernando@cortezi.com.br',
     subject: 'Formuário de contato',
     html: `
       <i><strong>${name}</strong> enviou uma mensagem através do formulário de contato:</i>

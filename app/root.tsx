@@ -59,7 +59,8 @@ export const meta: V2_MetaFunction = () => {
     },
     {
       property: 'og:description',
-      content: 'Sou professor e pesquisador na área de gestão empresarial.',
+      content:
+        'Sou professor, pesquisador e consultor na área de gestão empresarial.',
     },
     {
       property: 'twitter:card',

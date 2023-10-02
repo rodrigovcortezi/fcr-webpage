@@ -24,6 +24,12 @@ const validateContactName = (value: string) => {
   }
 }
 
+type FieldErrors = {
+  name?: string
+  email?: string
+  message?: string
+}
+
 const validateContactEmail = (value: string) => {
   if (value.length === 0) {
     return 'Campo obrigatório'
@@ -57,7 +63,7 @@ export const action = async ({request}: ActionArgs) => {
     return json(null, {status: 400})
   }
 
-  const fieldErrors = {
+  const fieldErrors: FieldErrors = {
     name: validateContactName(name),
     email: validateContactEmail(email),
     message: validateContactMessage(message),
@@ -108,7 +114,7 @@ const ContactInput = ({
 
 const ContactRoute = () => {
   const actionData = useActionData<typeof action>()
-  const fieldErrors = actionData?.fieldErrors
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
   const {state: navigationState} = useNavigation()
   const [searchParams, setSearchParams] = useSearchParams()
   const success = Boolean(searchParams.get('success'))
@@ -117,6 +123,7 @@ const ContactRoute = () => {
   useEffect(() => {
     let timeout: NodeJS.Timeout
     if (navigationState === 'submitting') {
+      setFieldErrors({})
       timeout = setTimeout(() => setSubmitting(true), 200)
     } else {
       setSubmitting(false)
@@ -126,6 +133,12 @@ const ContactRoute = () => {
       clearTimeout(timeout)
     }
   }, [navigationState])
+
+  useEffect(() => {
+    if (actionData) {
+      setFieldErrors(actionData.fieldErrors)
+    }
+  }, [actionData])
 
   const handleModalClose = () => {
     setSearchParams(new URLSearchParams(), {replace: true})

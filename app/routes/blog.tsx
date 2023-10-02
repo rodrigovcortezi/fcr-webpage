@@ -1,9 +1,13 @@
-import {type LoaderArgs, json} from '@remix-run/node'
+import {type LoaderArgs, json, type V2_MetaFunction} from '@remix-run/node'
 import {Link, useLoaderData} from '@remix-run/react'
 import {type ISbStoryData} from '@storyblok/react'
 import {ArticleCard} from '~/components/article-card'
 import {storyblokClient} from '~/helpers/storyblok'
 import {type ArticleData} from '~/types/storyblok'
+
+export const meta: V2_MetaFunction = () => {
+  return [{title: 'Blog - Fernando Cortezi'}]
+}
 
 export const loader = async ({context}: LoaderArgs) => {
   const data = await storyblokClient.getFolder('articles', context)

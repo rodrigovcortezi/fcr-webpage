@@ -1,4 +1,4 @@
-import {json, type LoaderArgs} from '@remix-run/node'
+import {json, type LoaderArgs, type V2_MetaFunction} from '@remix-run/node'
 import {useLoaderData} from '@remix-run/react'
 import {
   type ISbStoryData,
@@ -10,6 +10,10 @@ import {PresentationSection} from '~/components/presentation-section'
 import {TestimonialsSection} from '~/components/testimonials-section'
 import {storyblokClient} from '~/helpers/storyblok'
 import type {AboutPage} from '~/types/storyblok'
+
+export const meta: V2_MetaFunction = () => {
+  return [{title: 'Sobre - Fernando Cortezi'}]
+}
 
 export const loader = async ({context}: LoaderArgs) => {
   const data = await storyblokClient.getStory('about', context)

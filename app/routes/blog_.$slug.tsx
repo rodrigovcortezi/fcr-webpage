@@ -1,4 +1,4 @@
-import {json, type LoaderArgs} from '@remix-run/node'
+import {json, type V2_MetaFunction, type LoaderArgs} from '@remix-run/node'
 import {useLoaderData} from '@remix-run/react'
 import {
   useStoryblokState,
@@ -9,12 +9,17 @@ import {imageResolver} from '~/helpers/image'
 import {storyblokClient} from '~/helpers/storyblok'
 import {type ArticleData} from '~/types/storyblok'
 
+export const meta: V2_MetaFunction<typeof loader> = ({data}) => {
+  return [{title: data?.content.title ?? 'Blog'}]
+}
+
 export const loader = async ({context, params}: LoaderArgs) => {
   const data = await storyblokClient.getStory(
     `articles/${params.slug}`,
     context,
   )
-  return json(data?.story)
+  const story = data?.story as ISbStoryData<ArticleData>
+  return json(story)
 }
 
 const ArticleRoute = () => {

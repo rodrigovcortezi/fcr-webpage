@@ -1,4 +1,9 @@
-import {type ActionArgs, json, redirect} from '@remix-run/node'
+import {
+  type ActionArgs,
+  json,
+  redirect,
+  type V2_MetaFunction,
+} from '@remix-run/node'
 import {
   Form,
   useActionData,
@@ -8,6 +13,10 @@ import {
 import {useEffect, useState} from 'react'
 import {Modal} from '~/components/modal'
 import {sendContactEmail} from '~/helpers/email'
+
+export const meta: V2_MetaFunction = () => {
+  return [{title: 'Contato - Fernando Cortezi'}]
+}
 
 const validateContactName = (value: string) => {
   if (value.length == 0) {
@@ -218,8 +227,8 @@ const ContactRoute = () => {
       {success ? (
         <Modal>
           <div className="font-montserrat">
-            <p className="text-center text-[60px] leading-none mb-5">🎉</p>
-            <h3 className="text-center font-montserrat font-medium text-black text-xl mb-8">
+            <p className="text-center text-[65px] leading-none mb-5">🎉</p>
+            <h3 className="text-center font-montserrat font-medium text-black text-lg mb-8">
               Mensagem recebida!
             </h3>
             <p className="text-center">

@@ -47,7 +47,29 @@ export const loader = async ({request, context}: LoaderArgs) => {
 }
 
 export const meta: V2_MetaFunction = () => {
-  return [{title: 'Fernando Cortezi'}]
+  return [
+    {title: 'Fernando Cortezi'},
+    {
+      property: 'og:title',
+      content: 'Fernando Cortezi',
+    },
+    {
+      property: 'og:image',
+      content: 'https://fernadocortezi.com.br/profile-400.webp',
+    },
+    {
+      property: 'og:description',
+      content: 'Sou professor e pesquisador na área de gestão empresarial.',
+    },
+    {
+      property: 'twitter:card',
+      content: 'summary_large_image',
+    },
+    {
+      property: 'twitter:image',
+      content: 'https://fernandocortezi.com.br/profile-400.webp',
+    },
+  ]
 }
 
 export const links: LinksFunction = () => [

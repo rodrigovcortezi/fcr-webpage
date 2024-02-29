@@ -218,7 +218,7 @@ export default function App() {
             in
             nodeRef={nodeRef}
             classNames="page"
-            timeout={500}
+            timeout={800}
           >
             <div ref={nodeRef}>
               <Outlet />

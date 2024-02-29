@@ -126,7 +126,7 @@ li.timeline-item:not(:last-child) {
 .page-appear-active {
   opacity: 1;
   transform: none;
-  transition: transform 500ms ease-out, opacity 500ms ease;
+  transition: transform 800ms ease-out, opacity 500ms linear;
 }
 
 /** Loading ellipsis **/

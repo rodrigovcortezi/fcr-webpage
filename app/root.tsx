@@ -11,7 +11,7 @@ import {
   useLocation,
 } from '@remix-run/react'
 
-import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import {CSSTransition} from 'react-transition-group'
 
 import tailwindStyles from '~/styles/tailwind.css'
 import appStyles from '~/styles/app.css'
@@ -212,18 +212,18 @@ export default function App() {
       <body className="bg-gray-100 text-gray-500 text-base">
         <NavigationMenu />
         <main className="lg:pl-[350px]">
-          <TransitionGroup>
-            <CSSTransition
-              key={location.pathname}
-              nodeRef={nodeRef}
-              classNames="page"
-              timeout={500}
-            >
-              <div ref={nodeRef}>
-                <Outlet />
-              </div>
-            </CSSTransition>
-          </TransitionGroup>
+          <CSSTransition
+            key={location.pathname}
+            appear
+            in
+            nodeRef={nodeRef}
+            classNames="page"
+            timeout={500}
+          >
+            <div ref={nodeRef}>
+              <Outlet />
+            </div>
+          </CSSTransition>
         </main>
         <script
           dangerouslySetInnerHTML={{

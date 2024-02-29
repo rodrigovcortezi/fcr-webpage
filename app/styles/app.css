@@ -118,12 +118,12 @@ li.timeline-item:not(:last-child) {
 
 /** Page transitions **/
 
-.page-enter {
+.page-appear {
   opacity: 0;
   transform: translateX(-20px);
 }
 
-.page-enter-active {
+.page-appear-active {
   opacity: 1;
   transform: none;
   transition: transform 500ms ease-out, opacity 500ms ease;
